@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NEXT_USE_NETLIFY_EDGE = "true"
+  # Enable Next.js Skew Protection to prevent client-side chunk loading errors on redeploys
+  NETLIFY_NEXT_SKEW_PROTECTION = "true"

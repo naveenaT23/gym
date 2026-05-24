@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-charcoal text-white selection:bg-primary selection:text-charcoal;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bebas tracking-wider uppercase;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-8 py-3 bg-primary text-charcoal font-bold tracking-widest uppercase transition-all duration-300 hover:bg-white hover:scale-105 active:scale-95 disabled:opacity-50;
+  }
+
+  .btn-outline {
+    @apply px-8 py-3 bg-transparent border-2 border-white text-white font-bold tracking-widest uppercase transition-all duration-300 hover:bg-white hover:text-charcoal hover:scale-105 active:scale-95 disabled:opacity-50;
+  }
+
+  .glass-card {
+    @apply bg-charcoal-light/80 backdrop-blur-md border border-white/10 rounded-xl transition-all duration-300;
+  }
+
+  .section-padding {
+    @apply py-20 px-6 lg:px-20;
+  }
+}
+
+@layer utilities {
+  .text-shadow-gold {
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  }
+  
+  .glow-primary {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-charcoal;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-charcoal-light border-2 border-charcoal rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary;
+}
+
+/* ==========================================
+   Light Theme styling overrides for Admin Portal
+   ========================================== */
+.light {
+  --background-color: #f8fafc;
+  --text-color: #0f172a;
+}
+.light body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+.light .glass-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05) !important;
+}
+.light .glass-card h2, 
+.light .glass-card h3, 
+.light .glass-card h4, 
+.light .glass-card p, 
+.light .glass-card span, 
+.light .glass-card td, 
+.light .glass-card th, 
+.light .glass-card div:not(.bg-primary):not(.text-primary) {
+  color: #0f172a !important;
+}
+.light .glass-card p.text-gray-400, 
+.light .glass-card p.text-gray-500, 
+.light .glass-card span.text-gray-400, 
+.light .glass-card span.text-gray-500 {
+  color: #475569 !important;
+}
+.light select, 
+.light input, 
+.light textarea {
+  background-color: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+.light select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+.light table {
+  color: #0f172a !important;
+}
+.light table tr:hover {
+  background-color: rgba(15, 23, 42, 0.03) !important;
+}
+.light header {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+.light header h1, 
+.light header h2 {
+  color: #0f172a !important;
+}
+.light aside {
+  background-color: #ffffff !important;
+  border-right: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+.light aside span, 
+.light aside h1, 
+.light aside h2, 
+.light aside a {
+  color: #0f172a !important;
+}
+.light aside a.bg-primary {
+  background-color: #D4AF37 !important;
+  color: #121212 !important;
+}
+.light aside a.bg-primary span, 
+.light aside a.bg-primary svg {
+  color: #121212 !important;
+}
+.light aside a:hover:not(.bg-primary) {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+.light main {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+.light main h2, 
+.light main p {
+  color: #0f172a !important;
+}
+.light main p.text-gray-500 {
+  color: #475569 !important;
+}
+.light select, .light input, .light textarea {
+  color-scheme: light !important;
+}
+.light .text-gray-400 {
+  color: #475569 !important;
+}
+.light .text-gray-300 {
+  color: #1e293b !important;
+}
+.light .bg-charcoal-dark {
+  background-color: #f1f5f9 !important;
+}
+.light .bg-charcoal {
+  background-color: #f8fafc !important;
+}
+.light .bg-white\/5 {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+.light .border-white\/5 {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+.light .border-white\/10 {
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
+
