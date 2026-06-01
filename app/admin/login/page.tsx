@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Lock, Mail, Dumbbell, AlertTriangle, Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
@@ -42,10 +43,16 @@ export default function LoginPage() {
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden font-nunito">
       {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/gym-login-bg.png')" }}
-      />
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/gym-login-bg.png"
+          alt="Gym Background"
+          fill
+          priority
+          quality={75}
+          className="object-cover"
+        />
+      </div>
       {/* Dark overlay for readability */}
       <div className="absolute inset-0 bg-black/70" />
       {/* Gradient overlays */}

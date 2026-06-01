@@ -16,6 +16,13 @@ export const supabase = isSupabaseConfigured
 // Local JSON Database setup
 const DB_FILE_PATH = path.join(process.cwd(), "database", "db.json");
 
+const isServerless =
+  typeof window === "undefined" &&
+  (process.env.NETLIFY === "true" ||
+    process.env.VERCEL === "true" ||
+    process.env.AWS_EXECUTION_ENV !== undefined ||
+    process.env.NODE_ENV === "production");
+
 interface LocalDB {
   admins: any[];
   members: any[];
@@ -155,6 +162,11 @@ declare global {
 const readLocalDB = (): LocalDB => {
   if (global.localDbCache) {
     return global.localDbCache;
+  }
+  if (isServerless) {
+    const initialData = seedLocalDB();
+    global.localDbCache = initialData;
+    return initialData;
   }
   try {
     const dir = path.dirname(DB_FILE_PATH);
