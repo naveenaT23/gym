@@ -40,10 +40,18 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-charcoal overflow-hidden font-nunito">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.08),transparent_40%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(230,57,70,0.05),transparent_40%)]" />
-      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden font-nunito">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/gym-login-bg.png')" }}
+      />
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/70" />
+      {/* Gradient overlays */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.12),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(230,57,70,0.08),transparent_50%)]" />
+      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
       
       <div className="relative w-full max-w-md p-8 mx-4 glass-card border border-white/10 glow-primary">
         <div className="flex flex-col items-center mb-8">

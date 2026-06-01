@@ -44,7 +44,7 @@ const seedLocalDB = (): LocalDB => {
       {
         id: "admin-1",
         email: "admin@royalfitness.com",
-        password_hash: "$2b$10$kjzbDYLe4gJUIQIVgJK5B.1XuPLpIJ6P.gfFwRDHsuIpeTzy4AAaC", // bcrypt for admin123
+        password_hash: "$2b$10$NrU/EYiVHcQC3oRDifrZ9.pyO3vduHGUhFt.Hxq7xEoBxrnk7uNAC", // bcrypt for adminpassword
         name: "Royal Fitness Admin",
         created_at: new Date().toISOString(),
       },
