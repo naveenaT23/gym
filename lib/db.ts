@@ -146,31 +146,54 @@ const seedLocalDB = (): LocalDB => {
   };
 };
 
+// Global in-memory cache for local JSON database to prevent disk errors on serverless platforms like Netlify
+declare global {
+  var localDbCache: LocalDB | undefined;
+}
+
 // Local JSON DB Helper functions
 const readLocalDB = (): LocalDB => {
+  if (global.localDbCache) {
+    return global.localDbCache;
+  }
   try {
     const dir = path.dirname(DB_FILE_PATH);
     if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
+      try {
+        fs.mkdirSync(dir, { recursive: true });
+      } catch (err) {
+        console.warn("Could not create database directory, using in-memory:", err);
+      }
     }
-    if (!fs.existsSync(DB_FILE_PATH)) {
-      const initialData = seedLocalDB();
-      fs.writeFileSync(DB_FILE_PATH, JSON.stringify(initialData, null, 2));
-      return initialData;
+    
+    let dbData: LocalDB;
+    if (fs.existsSync(DB_FILE_PATH)) {
+      const content = fs.readFileSync(DB_FILE_PATH, "utf-8");
+      dbData = JSON.parse(content);
+    } else {
+      dbData = seedLocalDB();
+      try {
+        fs.writeFileSync(DB_FILE_PATH, JSON.stringify(dbData, null, 2));
+      } catch (err) {
+        console.warn("Could not write database file, using in-memory:", err);
+      }
     }
-    const content = fs.readFileSync(DB_FILE_PATH, "utf-8");
-    return JSON.parse(content);
+    global.localDbCache = dbData;
+    return dbData;
   } catch (error) {
-    console.error("Local DB read error:", error);
-    return seedLocalDB();
+    console.error("Local DB read error, fallback to memory seed:", error);
+    const dbData = seedLocalDB();
+    global.localDbCache = dbData;
+    return dbData;
   }
 };
 
 const writeLocalDB = (data: LocalDB) => {
+  global.localDbCache = data;
   try {
     fs.writeFileSync(DB_FILE_PATH, JSON.stringify(data, null, 2));
   } catch (error) {
-    console.error("Local DB write error:", error);
+    console.warn("Local DB write error (expected on read-only serverless runtimes):", error);
   }
 };
 
